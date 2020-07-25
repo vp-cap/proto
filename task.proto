@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+message Task {
+	string video_name = 1;
+	string video_cid = 2;
+}
+
+message HandlerStatus {
+	enum Status {
+		ACTIVE = 0;
+		INACTIVE = 1;
+	}
+	Status status = 1;
+}
+
+message TaskStatus {
+	enum Status {
+		DONE = 0;
+		ASSIGNED = 1;
+		UNASSIGNED = 2;
+	}
+	Status status = 1;
+}
+
+message Handler {
+	string Addr = 1; 
+}
+
+service TaskInitService {
+	rpc SubmitTask (Task) returns (google.protobuf.Empty);
+}
+
+service TaskAllocationService {
+	rpc AllocateTask (Task) returns (google.protobuf.Empty);
+	rpc GetTaskStatus (Task) returns (TaskStatus);
+}
+
+service RegisterHandlerService {
+	rpc RegisterHandler(Handler) returns (google.protobuf.Empty); 
+}
+ 
