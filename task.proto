@@ -11,6 +11,7 @@ message HandlerStatus {
 	enum Status {
 		ACTIVE = 0;
 		INACTIVE = 1;
+		WORKING = 2;
 	}
 	Status status = 1;
 }
@@ -18,8 +19,9 @@ message HandlerStatus {
 message TaskStatus {
 	enum Status {
 		DONE = 0;
-		ASSIGNED = 1;
-		UNASSIGNED = 2;
+		WORKING = 1;
+		ASSIGNED = 2;
+		UNASSIGNED = 3;
 	}
 	Status status = 1;
 }
@@ -34,7 +36,7 @@ service TaskInitService {
 
 service TaskAllocationService {
 	rpc AllocateTask (Task) returns (google.protobuf.Empty);
-	rpc GetTaskStatus (Task) returns (TaskStatus);
+	rpc GetTaskStatus (google.protobuf.Empty) returns (TaskStatus);
 }
 
 service RegisterHandlerService {
