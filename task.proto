@@ -30,6 +30,10 @@ message Handler {
 	string Addr = 1; 
 }
 
+message Response {
+	bool storeInDb = 1; 
+}
+
 service TaskInitService {
 	rpc SubmitTask (Task) returns (google.protobuf.Empty);
 }
@@ -40,6 +44,7 @@ service TaskAllocationService {
 }
 
 service RegisterHandlerService {
+	rpc RegisterTaskComplete (Handler) returns (Response); 
 	rpc RegisterHandler(Handler) returns (google.protobuf.Empty); 
 }
  
