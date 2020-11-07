@@ -22,6 +22,7 @@ message TaskStatus {
 		WORKING = 1;
 		ASSIGNED = 2;
 		UNASSIGNED = 3;
+		FAILED = 4;
 	}
 	Status status = 1;
 }

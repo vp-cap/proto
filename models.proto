@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+message Interval {
+    int32 start = 1;
+    int32 end = 3;
+}
+
+message VideoInference {
+    // message ObjectCountsEachSecond {
+    //     map<string, int64> objectCountsEachSecond = 1;
+    // }
+    // repeated ObjectCountsEachSecond objectCountsEachSecond = 1;
+    string objectCountsEachSecond = 2;
+    map<string, float> objectsToAvgFrequency = 3;
+    map<string, Interval> topFiveObjectsToInterval = 4;
+    map<string, float> topFiveObjectsToAvgFrequency = 5;
+}
